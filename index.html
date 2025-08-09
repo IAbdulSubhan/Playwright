@@ -229,28 +229,30 @@
 <body>
     <div class="container">
         <h1>Playwright Python Tutorial</h1>
+        <button type="button" class="collapsible">Sync Playwright</button>
+        <div class="content sync-section">
+            <div class="section animation">
+                <h2>Sync Playwright Basics</h2>
 
-        <div class="section animation">
-            <h2>Sync Playwright Basics</h2>
-
-            <div class="code-wrapper">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <pre><code>with sync_playwright() as p:
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>with sync_playwright() as p:
     browser = p.chromium.launch(headless=False, slow_mo=500)
     page = browser.new_page()</code></pre>
+                </div>
+
+                <p><code>slow_mo=500</code> slows down the automation by 500ms between actions for better visibility.
+                </p>
             </div>
 
-            <p><code>slow_mo=500</code> slows down the automation by 500ms between actions for better visibility.</p>
-        </div>
+            <div class="section animation repl-section">
+                <h2>REPL Mode (Interactive Browser Session)</h2>
 
-        <div class="section animation repl-section">
-            <h2>REPL Mode (Interactive Browser Session)</h2>
+                <p>To work with the browser in real-time without it closing automatically (like Jupyter notebook):</p>
 
-            <p>To work with the browser in real-time without it closing automatically (like Jupyter notebook):</p>
-
-            <div class="code-wrapper">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <pre><code># In your terminal type:
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code># In your terminal type:
 python 
 
 # This will open Python REPL where you can write your script, test line by line
@@ -269,200 +271,202 @@ After completing work run following commands
 playwright.stop()
 
 </code></pre>
-            </div>
+                </div>
 
-            <div class="note">
-                <p><strong>Alternative Method:</strong> You can also use <code>input()</code> at the end of your script
-                    to pause execution:</p>
-                <div class="code-wrapper">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                    <pre><code># At the end of your script:
+                <div class="note">
+                    <p><strong>Alternative Method:</strong> You can also use <code>input()</code> at the end of your
+                        script
+                        to pause execution:</p>
+                    <div class="code-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code># At the end of your script:
 input("Press Enter to close browser...")
 browser.close()</code></pre>
+                    </div>
+                </div>
+
+                <div class="tip">
+
+                    <p>Use Python REPL Run:"python" using terminal <br> <strong>Pro Tip:</strong> For even better
+                        interactive experience, use <code>ipython</code> instead of
+                        regular Python REPL:</p>
+                    <div class="code-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code>pip install ipython
+ipython -i your_script.py</code></pre>
+                    </div>
+                    <p>IPython provides tab completion and better introspection of objects.</p>
                 </div>
             </div>
 
-            <div class="tip">
-                
-                <p>Use Python REPL Run:"python" using terminal <br> <strong>Pro Tip:</strong> For even better interactive experience, use <code>ipython</code> instead of
-                    regular Python REPL:</p>
+            <div class="section animation">
+                <h2>Locating Elements</h2>
+
+                <div class="locator-types">
+                    <div class="locator-card">
+                        <h4>By Role</h4>
+                        <div class="code-wrapper">
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            <pre><code>link = page.get_by_role('link', name="linkname")
+# Matches: &lt;a href='link'&gt;linkname&lt;/a&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="locator-card">
+                        <h4>Current URL</h4>
+                        <div class="code-wrapper">
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            <pre><code>print(page.url)  # Prints current page URL</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="locator-card">
+                        <h4>Highlight Elements</h4>
+                        <div class="code-wrapper">
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            <pre><code>button.highlight()  # Visually highlights the element</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="section animation">
+                <h2>Different Locator Types</h2>
+
+                <h3>By Label</h3>
                 <div class="code-wrapper">
                     <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                    <pre><code>pip install ipython
-ipython -i your_script.py</code></pre>
-                </div>
-                <p>IPython provides tab completion and better introspection of objects.</p>
-            </div>
-        </div>
-
-        <div class="section animation">
-            <h2>Locating Elements</h2>
-
-            <div class="locator-types">
-                <div class="locator-card">
-                    <h4>By Role</h4>
-                    <div class="code-wrapper">
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        <pre><code>link = page.get_by_role('link', name="linkname")
-# Matches: &lt;a href='link'&gt;linkname&lt;/a&gt;</code></pre>
-                    </div>
-                </div>
-
-                <div class="locator-card">
-                    <h4>Current URL</h4>
-                    <div class="code-wrapper">
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        <pre><code>print(page.url)  # Prints current page URL</code></pre>
-                    </div>
-                </div>
-
-                <div class="locator-card">
-                    <h4>Highlight Elements</h4>
-                    <div class="code-wrapper">
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        <pre><code>button.highlight()  # Visually highlights the element</code></pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="section animation">
-            <h2>Different Locator Types</h2>
-
-            <h3>By Label</h3>
-            <div class="code-wrapper">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <pre><code>page.get_by_label('EMAIL').highlight()
+                    <pre><code>page.get_by_label('EMAIL').highlight()
 # Matches input with matching label</code></pre>
-            </div>
+                </div>
 
-            <h3>By Placeholder</h3>
-            <div class="code-wrapper">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <pre><code>page.get_by_placeholder('EMAIL').highlight()
+                <h3>By Placeholder</h3>
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>page.get_by_placeholder('EMAIL').highlight()
 # Matches input with matching placeholder</code></pre>
-            </div>
+                </div>
 
-            <h3>By Text</h3>
-            <div class="code-wrapper">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <pre><code>page.get_by_text('Hi this is abdul').highlight()
+                <h3>By Text</h3>
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>page.get_by_text('Hi this is abdul').highlight()
 # Loose match (default)
 page.get_by_text('Hi this is abdul', exact=True).highlight()
 # Exact match</code></pre>
-            </div>
+                </div>
 
-            <h3>By Alt Text</h3>
-            <div class="code-wrapper">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <pre><code>page.get_by_alt_text("kid eating apple").highlight()
+                <h3>By Alt Text</h3>
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>page.get_by_alt_text("kid eating apple").highlight()
 # Targets image with matching alt text</code></pre>
-            </div>
+                </div>
 
-            <h3>By Title Attribute</h3>
-            <div class="code-wrapper">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <pre><code>page.get_by_title("attribute").highlight()
+                <h3>By Title Attribute</h3>
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>page.get_by_title("attribute").highlight()
 # Caution: Same title may be on multiple elements</code></pre>
+                </div>
             </div>
-        </div>
 
-        <div class="section animation">
-            <h2>CSS Selector Locators</h2>
+            <div class="section animation">
+                <h2>CSS Selector Locators</h2>
 
-            <div class="code-wrapper">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <pre><code>page.locator('h1').highlight()  # Tag selector
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>page.locator('h1').highlight()  # Tag selector
 page.locator('button.btn-outline-success').highlight()  # Class selector
 page.locator('button#btn-group-drop1').highlight()  # ID selector</code></pre>
-            </div>
+                </div>
 
-            <h3>Attribute Selectors</h3>
-            <div class="code-wrapper">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <pre><code>page.locator('input[readonly]').highlight()
+                <h3>Attribute Selectors</h3>
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>page.locator('input[readonly]').highlight()
 page.locator('input[value="correct value"]').highlight()</code></pre>
-            </div>
+                </div>
 
-            <h3>CSS Hierarchy</h3>
-            <div class="code-wrapper">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <pre><code># Parent > Child selector
+                <h3>CSS Hierarchy</h3>
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code># Parent > Child selector
 page.locator('nav.bg-dark a.nav-link.active').highlight()
 page.locator('div.bas-component > ul.list-group').highlight()</code></pre>
+                </div>
             </div>
-        </div>
 
-        <div class="section animation">
-            <h2>CSS Pseudo Classes</h2>
+            <div class="section animation">
+                <h2>CSS Pseudo Classes</h2>
 
-            <h3>Text Pseudo Class</h3>
-            <div class="code-wrapper">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <pre><code># Loose match (contains text)
+                <h3>Text Pseudo Class</h3>
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code># Loose match (contains text)
 page.locator('h1:text("Navbars")').highlight()
 
 # Exact match
 page.locator('h1:text-is("Navbars")').highlight()</code></pre>
-            </div>
+                </div>
 
-            <h3>Visible Pseudo Class</h3>
-            <div class="code-wrapper">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <pre><code>page.locator('div.dropdown-menu:visible').highlight()
+                <h3>Visible Pseudo Class</h3>
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>page.locator('div.dropdown-menu:visible').highlight()
 # Targets only visible elements</code></pre>
-            </div>
+                </div>
 
-            <h3>Nth Match</h3>
-            <div class="code-wrapper">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <pre><code>page.locator(':nth-match(button.btn-primary, 4)')
+                <h3>Nth Match</h3>
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>page.locator(':nth-match(button.btn-primary, 4)')
 # Selects 4th matching button
 page.locator(':nth-match(button:text("primary"), 1)')
 # Selects 1st matching button with text</code></pre>
+                </div>
             </div>
-        </div>
 
-        <div class="section animation">
-            <h2>XPath Locators</h2>
+            <div class="section animation">
+                <h2>XPath Locators</h2>
 
-            <div class="code-wrapper">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <pre><code># Absolute path (starts from root)
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code># Absolute path (starts from root)
 page.locator('xpath=/html/body/h1').highlight()
 
 # Relative path
 page.locator('xpath=//h1[@id="idname"]').highlight()
 page.locator('//input[@readonly]').highlight()
 page.locator('//input[@value="wrong value"]').highlight()</code></pre>
+                </div>
+
+                <div class="note">
+                    <p><strong>Note:</strong> The 'xpath=' prefix is optional in Playwright.</p>
+                </div>
             </div>
 
-            <div class="note">
-                <p><strong>Note:</strong> The 'xpath=' prefix is optional in Playwright.</p>
-            </div>
-        </div>
+            <div class="section animation">
+                <h2>Other Locators</h2>
 
-        <div class="section animation">
-            <h2>Other Locators</h2>
-
-            <h3>Nth Element Selection</h3>
-            <div class="code-wrapper">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <pre><code># Using get_by_role
+                <h3>Nth Element Selection</h3>
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code># Using get_by_role
 page.get_by_role('button', name='primary').locator('nth=0').highlight()
 
 # Using locator
 page.locator('button').locator('nth=0').highlight()</code></pre>
+                </div>
             </div>
-        </div>
 
-        <div class="section animation">
-            <h2>Mouse Actions</h2>
+            <div class="section animation">
+                <h2>Mouse Actions</h2>
 
-            <div class="code-wrapper">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <pre><code>targeted_element = page.get_by_role('button', name='primary').first
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>targeted_element = page.get_by_role('button', name='primary').first
 
 # Double click
 targeted_element.dblclick()
@@ -478,15 +482,15 @@ targeted_element.click(modifiers=['Shift', 'Ctrl', 'Meta'])
 # Hover
 outline_button = page.locator('button.btn-outline-primary')
 outline_button.hover()</code></pre>
+                </div>
             </div>
-        </div>
 
-        <div class="section animation">
-            <h2>Input Field Actions</h2>
+            <div class="section animation">
+                <h2>Input Field Actions</h2>
 
-            <div class="code-wrapper">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <pre><code>input = page.get_by_placeholder('EMAIL').highlight()
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>input = page.get_by_placeholder('EMAIL').highlight()
 
 # Fill (fast, like paste)
 input.fill('abdul@gmail.com')
@@ -500,15 +504,15 @@ input.clear()
 
 # Get input value
 input_value = input.input_value()</code></pre>
+                </div>
             </div>
-        </div>
 
-        <div class="section animation">
-            <h2>Checkbox and Radio Inputs</h2>
+            <div class="section animation">
+                <h2>Checkbox and Radio Inputs</h2>
 
-            <div class="code-wrapper">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <pre><code># Radio button
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code># Radio button
 radio_option2 = page.get_by_label('Option 2')
 radio_option2.check()
 radio_option2.is_checked()  # Returns boolean
@@ -524,15 +528,15 @@ check_option2.click()  # Toggles state
 switch_field = page.get_by_label('Toggle Switch')
 switch_field.check()
 switch_field.uncheck()</code></pre>
+                </div>
             </div>
-        </div>
 
-        <div class="section animation">
-            <h2>Select Menu</h2>
+            <div class="section animation">
+                <h2>Select Menu</h2>
 
-            <div class="code-wrapper">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <pre><code># Single select
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code># Single select
 select_option = page.get_by_label('Example select')
 select_option.select_option('value')  # Value from dropdown
 
@@ -540,66 +544,247 @@ select_option.select_option('value')  # Value from dropdown
 multi_select = page.get_by_label('Example Multi select')
 multi_select.select_option(['2', '4'])  # Multiple values
 multi_select.select_option(['1', '2', '5'])</code></pre>
+                </div>
+
+                <div class="warning">
+                    <p><strong>Warning:</strong> Using values that don't exist in the dropdown will cause a timeout
+                        error.
+                    </p>
+                </div>
             </div>
 
-            <div class="warning">
-                <p><strong>Warning:</strong> Using values that don't exist in the dropdown will cause a timeout error.
-                </p>
-            </div>
-        </div>
+            <div class="section animation">
+                <h2>Dropdown Menu</h2>
 
-        <div class="section animation">
-            <h2>Dropdown Menu</h2>
-
-            <div class="code-wrapper">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <pre><code># Click dropdown button
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code># Click dropdown button
 button = page.locator('button#btnGroupDropdown1')
 button.click()
 
 # Select from visible dropdown
 dropdown_link = page.locator('div.dropdown-menu:visible a:text("Dropdown link")').last
 dropdown_link.click()</code></pre>
+                </div>
             </div>
-        </div>
 
-        <div class="section animation">
-            <h2>File Uploads</h2>
+            <div class="section animation">
+                <h2>File Uploads</h2>
 
-            <h3>Standard Input</h3>
-            <div class="code-wrapper">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <pre><code>file_input = page.get_by_label('Default file input example')
+                <h3>Standard Input</h3>
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>file_input = page.get_by_label('Default file input example')
 
 # Single file
 file_input.set_input_files("file.txt")
 
 # Multiple files
 file_input.set_input_files(["file.txt", "app.py"])</code></pre>
-            </div>
+                </div>
 
-            <h3>Button-triggered Upload</h3>
-            <div class="code-wrapper">
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                <pre><code>with page.expect_file_chooser() as fc_info:
+                <h3>Button-triggered Upload</h3>
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>with page.expect_file_chooser() as fc_info:
     file_input.click()
     
 file_chooser = fc_info.value
 file_chooser.set_files('app.py')</code></pre>
-            </div>
+                </div>
 
-            <div class="tip">
-                <p><strong>Tip:</strong> If highlighting bothers you, target the footer:</p>
-                <div class="code-wrapper">
-                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                    <pre><code>page.locator('footer').highlight()</code></pre>
+                <div class="tip">
+                    <p><strong>Tip:</strong> If highlighting bothers you, target the footer:</p>
+                    <div class="code-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code>page.locator('footer').highlight()</code></pre>
+                    </div>
                 </div>
             </div>
         </div>
 
+
+        <button type="button" class="collapsible">Async Playwright</button>
+        <div class="content async-section">
+            <div class="section animation">
+                <h2>Async Playwright Basics</h2>
+
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>import asyncio
+from playwright.async_api import async_playwright
+
+async def main():
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(headless=False)
+        page = await browser.new_page()
+        await page.goto("https://example.com")
+        print(await page.title())
+        await browser.close()
+
+asyncio.run(main())</code></pre>
+                </div>
+            </div>
+
+            <div class="section animation">
+                <h2>When to Use Async Playwright</h2>
+
+                <div class="locator-types">
+                    <div class="locator-card">
+                        <h4>✅ Use Async When:</h4>
+                        <ul>
+                            <li>Scraping multiple pages simultaneously</li>
+                            <li>Running performance tests with many virtual users</li>
+                            <li>Handling multiple browser sessions</li>
+                            <li>Executing long-running tasks without blocking</li>
+                            <li>Need better resource utilization</li>
+                        </ul>
+                    </div>
+
+                    <div class="locator-card">
+                        <h4>❌ Avoid Async When:</h4>
+                        <ul>
+                            <li>Writing simple, linear scripts</li>
+                            <li>Working with small-scale automation</li>
+                            <li>Debugging (sync is easier to debug)</li>
+                            <li>When dependencies don't support async</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section animation">
+                <h2>Sync vs Async Comparison</h2>
+
+                <table style="width:100%; border-collapse: collapse;">
+                    <tr style="background-color: var(--darker);">
+                        <th style="padding: 12px; text-align: left; border-bottom: 1px solid var(--primary);">Feature
+                        </th>
+                        <th style="padding: 12px; text-align: left; border-bottom: 1px solid var(--primary);">Sync
+                            Playwright</th>
+                        <th style="padding: 12px; text-align: left; border-bottom: 1px solid var(--primary);">Async
+                            Playwright</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--gray);">Code Structure</td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--gray);">Linear, easy to follow</td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--gray);">Requires async/await</td>
+                    </tr>
+                    <tr style="background-color: var(--darker);">
+                        <td style="padding: 12px; border-bottom: 1px solid var(--gray);">Performance</td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--gray);">One operation at a time</td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--gray);">Concurrent operations</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--gray);">Browser Control</td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--gray);">Single browser session</td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--gray);">Multiple sessions</td>
+                    </tr>
+                    <tr style="background-color: var(--darker);">
+                        <td style="padding: 12px; border-bottom: 1px solid var(--gray);">Learning Curve</td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--gray);">Easier for beginners</td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--gray);">Requires async knowledge</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px;">Best For</td>
+                        <td style="padding: 12px;">Simple scripts, testing</td>
+                        <td style="padding: 12px;">Large-scale automation</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="section animation">
+                <h2>Concurrent Page Handling</h2>
+
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>import asyncio
+from playwright.async_api import async_playwright
+
+async def scrape_page(url):
+    async with async_playwright() as p:
+        browser = await p.chromium.launch()
+        page = await browser.new_page()
+        await page.goto(url)
+        title = await page.title()
+        await browser.close()
+        return title
+
+async def main():
+    urls = [
+        'https://example.com',
+        'https://google.com',
+        'https://github.com'
+    ]
+    
+    # Run all pages concurrently
+    results = await asyncio.gather(*[scrape_page(url) for url in urls])
+    print(results)
+
+asyncio.run(main())</code></pre>
+                </div>
+            </div>
+
+            <div class="section animation">
+                <h2>Async Best Practices</h2>
+
+                <div class="tip">
+                    <h4>1. Use Semaphores for Rate Limiting</h4>
+                    <div class="code-wrapper">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code>async def limited_task(semaphore, url):
+    async with semaphore:
+        return await scrape_page(url)
+
+async def main():
+    semaphore = asyncio.Semaphore(5)  # Max 5 concurrent
+    tasks = [limited_task(semaphore, url) for url in urls]
+    await asyncio.gather(*tasks)</code></pre>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <h4>2. Always Close Resources</h4>
+                    <p>Use <code>async with</code> or manually <code>await browser.close()</code> to prevent resource
+                        leaks.
+                    </p>
+                </div>
+
+                <div class="warning">
+                    <h4>3. Error Handling</h4>
+                    <p>Always wrap async operations in try-except blocks as unhandled exceptions can be silent.</p>
+                </div>
+            </div>
+
+            <div class="section animation">
+                <h2>Advanced Async Patterns</h2>
+
+                <h3>Timeout Handling</h3>
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>try:
+    await page.goto('https://example.com', timeout=10000)
+except Exception as e:
+    print(f"Timeout occurred: {e}")</code></pre>
+                </div>
+
+                <h3>Parallel Different Tasks</h3>
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>async def multi_task():
+    task1 = page.goto('https://example.com')
+    task2 = page.wait_for_selector('h1')
+    await asyncio.gather(task1, task2)</code></pre>
+                </div>
+            </div>
+        </div>
+
+
         <footer>
             <p>Playwright Python Tutorial &copy; 2025 | Created by Abdul Subhan</p>
         </footer>
+
+
     </div>
 
     <script>
@@ -653,6 +838,23 @@ file_chooser.set_files('app.py')</code></pre>
         document.querySelectorAll('.section').forEach(section => {
             observer.observe(section);
         });
+
+        // Add collapsible functionality
+        var coll = document.getElementsByClassName("collapsible");
+        for (var i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+
+        // Open the first section by default
+        document.querySelector('.collapsible').click();
     </script>
 </body>
 
