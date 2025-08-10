@@ -350,6 +350,16 @@ ipython -i your_script.py</code></pre>
             <div class="section animation">
                 <h2>Different Locator Types</h2>
 
+                <h3>Print Text of element</h3>
+                <div class="code-wrapper">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <pre><code>
+element_locator = page.locator("selector_for_your_element")
+text = element_locator.text_content()
+print(f"Text content: {text}")
+                    </code></pre>
+                </div>
+
                 <h3>By Label</h3>
                 <div class="code-wrapper">
                     <button class="copy-btn" onclick="copyCode(this)">Copy</button>
