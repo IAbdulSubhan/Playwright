@@ -247,6 +247,10 @@
     browser = playwright.chromium.launch(headless=False, args=["--start-maximized"])
     context = browser.new_context(no_viewport=True)
     page = context.new_page()
+
+    #wait for the page load
+    1- page.goto(url, wait_until='load')
+    2- page.wait_for_load_state('domcontentloaded')
     
 
 
