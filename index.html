@@ -276,15 +276,25 @@ python
 # You can then interact with the page directly:
 
 # Example commands in REPL:
+from playwright.sync_api import sync_playwright
+Note:here is the code to create instance 
+                        
+playwright= sync_playwright().start()
+browser = playwright.chromium.launch(headless=False, args=["--start-maximized"])
+context = browser.new_context(no_viewport=True)
+page = context.new_page()
+#short delay
+page.goto("https://xyz.com", wait_until="networkidle")
+                        
+After completing work run following commands
+playwright.stop()
+
 page.goto("https://example.com")  # Navigate to new URL
 page.click("button")  # Click elements
 print(page.title())  # Get page title
 # Continue working as long as you need
 
-Note:here is the code to create instance 
-playwright= sync_playwright().start()
-After completing work run following commands
-playwright.stop()
+
 
 </code></pre>
                 </div>
